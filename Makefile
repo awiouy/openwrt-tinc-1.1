@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2014 OpenWrt.org
+# Copyright (C) 2007-2016 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tinc
-PKG_VERSION:=1.1pre11
-PKG_RELEASE:=1
+PKG_VERSION:=1.1-pre11
+PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=http://www.tinc-vpn.org/packages
-PKG_MD5SUM:=e9cc2971927d31e703f0c2b1791a4edf
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=http://tinc-vpn.org/git/tinc
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_VERSION:=e44c337eae674120745f7c7c56a1a70919ff40ca
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+PKG_MIRROR_MD5SUM:=
 
+PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
