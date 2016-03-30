@@ -26,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/tinc
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+kmod-tun +liblzo +libopenssl
+  DEPENDS:=+kmod-tun +liblzo +libopenssl +librt
   TITLE:=VPN tunneling daemon
   URL:=http://www.tinc-vpn.org/
 # MAINTAINER:=Saverio Proto <zioproto@gmail.com>
@@ -50,6 +50,7 @@ CONFIGURE_ARGS += \
 
 define Package/tinc/install
 	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/sptps_speed $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tinc $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tincd $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/init.d/
