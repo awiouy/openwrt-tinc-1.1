@@ -51,7 +51,6 @@ OpenWRT 15.05.1
 tinc 1.1-pre11-e44c337eae674120745f7c7c56a1a70919ff40ca
 
 ```
-root@OpenWrt:~# sptps_speed
 Generating keys for 10 seconds:            674.06 op/s
 Ed25519 sign for 10 seconds:               606.45 op/s
 Ed25519 verify for 10 seconds:             262.35 op/s
@@ -68,7 +67,6 @@ OpenWRT 15.05.1
 tinc 1.1-pre11-e44c337eae674120745f7c7c56a1a70919ff40ca
 
 ```
-root@OpenWrt:~# sptps_speed
 Generating keys for 10 seconds:            953.27 op/s
 Ed25519 sign for 10 seconds:               857.97 op/s
 Ed25519 verify for 10 seconds:             353.00 op/s
