@@ -45,9 +45,10 @@ opkg install tinc_1.1-pre11-*_brcm2708.ipk
 
 ## sptps_speed
 
-Output for OpenWRT 15.05.1 and tinc_1.1-pre11
-
 ### Raspberry Pi B+
+
+OpenWRT 15.05.1
+tinc 1.1-pre11-e44c337eae674120745f7c7c56a1a70919ff40ca
 
 ```
 root@OpenWrt:~# sptps_speed
@@ -63,6 +64,9 @@ SPTPS/UDP transmit for 10 seconds:          82.89 Mbit/s
 
 ### Raspberry Pi 2
 
+OpenWRT 15.05.1
+tinc 1.1-pre11-e44c337eae674120745f7c7c56a1a70919ff40ca
+
 ```
 root@OpenWrt:~# sptps_speed
 Generating keys for 10 seconds:            953.27 op/s
@@ -73,4 +77,20 @@ SPTPS/TCP authenticate for 10 seconds:     117.96 op/s
 SPTPS/TCP transmit for 10 seconds:          98.49 Mbit/s
 SPTPS/UDP authenticate for 10 seconds:     118.08 op/s
 SPTPS/UDP transmit for 10 seconds:          99.17 Mbit/s
+```
+
+### Raspberry Pi 3
+
+OpenWRT r49096
+tinc 1.1-pre11-e44c337eae674120745f7c7c56a1a70919ff40ca
+
+```
+Generating keys for 10 seconds:           1012.15 op/s
+Ed25519 sign for 10 seconds:               922.64 op/s
+Ed25519 verify for 10 seconds:             367.24 op/s
+ECDH for 10 seconds:                       279.53 op/s
+SPTPS/TCP authenticate for 10 seconds:     125.81 op/s
+SPTPS/TCP transmit for 10 seconds:         148.28 Mbit/s
+SPTPS/UDP authenticate for 10 seconds:     125.85 op/s
+SPTPS/UDP transmit for 10 seconds:         149.26 Mbit/s
 ```
