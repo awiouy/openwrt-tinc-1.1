@@ -8,13 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tinc
-PKG_VERSION:=1.1-pre11
+#PKG_VERSION:=1.1-pre14
+PKG_VERSION:=1.1-pre15
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://tinc-vpn.org/git/tinc
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=e44c337eae674120745f7c7c56a1a70919ff40ca
+#1.1pre14
+#PKG_SOURCE_VERSION:=0edef996a6d944e9143f87dd3c72390979c33630
+#1.1pre15
+PKG_SOURCE_VERSION:=af81c436d6e11a53803747af7cc8ecfd449ccd4c
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_MIRROR_MD5SUM:=
 
@@ -50,7 +54,7 @@ CONFIGURE_ARGS += \
 
 define Package/tinc/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/sptps_speed $(1)/usr/sbin/
+#	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/sptps_speed $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tinc $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tincd $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/init.d/
