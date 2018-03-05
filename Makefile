@@ -8,17 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tinc
-#PKG_VERSION:=1.1-pre14
 PKG_VERSION:=1.1-pre15
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=http://tinc-vpn.org/git/tinc
+PKG_SOURCE_URL:=https://github.com/excogitation/tinc.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-#1.1pre14
-#PKG_SOURCE_VERSION:=0edef996a6d944e9143f87dd3c72390979c33630
-#1.1pre15
-PKG_SOURCE_VERSION:=af81c436d6e11a53803747af7cc8ecfd449ccd4c
+PKG_SOURCE_VERSION:=fbf2b70435e01cf9a14e34c6f80f44fbe4107f1d
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_MIRROR_MD5SUM:=
 
@@ -30,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/tinc
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+kmod-tun +liblzo +libopenssl +librt
+  DEPENDS:=+kmod-tun +liblzo +libopenssl +librt +zlib
   TITLE:=VPN tunneling daemon
   URL:=http://www.tinc-vpn.org/
 # MAINTAINER:=Saverio Proto <zioproto@gmail.com>
@@ -48,13 +44,12 @@ TARGET_CFLAGS += -std=gnu99
 CONFIGURE_ARGS += \
 	--disable-curses \
 	--disable-readline \
-	--with-kernel="$(LINUX_DIR)" \
 	--with-lzo-include="$(STAGING_DIR)/usr/include/lzo" \
 	--with-zlib="$(STAGING_DIR)/usr"
 
 define Package/tinc/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-#	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/sptps_speed $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/sptps_speed $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tinc $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tincd $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/init.d/

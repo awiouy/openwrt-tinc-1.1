@@ -1,8 +1,11 @@
-# tinc 1.1 for OpenWRT
+# tinc 1.1-pre15 for OpenWRT
+Since I couldn't figure out if there was a better/more right way to build sptps-speed with the openWrt tinc package
+I opted to clone the tag [release-1.1pre15](http://tinc-vpn.org/git/browse?p=tinc;a=commit;h=refs/tags/release-1.1pre15)
+and change the Makefile to also build sptps-speed since it is set to [not automatically build](http://tinc-vpn.org/git/browse?p=tinc;a=commit;h=d3cc96b027a919e22bbf06d634edb0a2a069ac92)
 
 ## Summary
 
-OpenWRT package for tinc 1.1
+OpenWRT package for tinc 1.1-pre15 with sptps-speed
 
 ## Documentation
 
@@ -16,17 +19,15 @@ OpenWRT package for tinc 1.1
 
 ### Sample instructions
 
-To build tinc-1.1 for OpenWRT 15.05 for Raspberry Pi 2:
+To build tinc-1.1 for OpenWrt/LEDE-project
 
 ```
-git clone git://git.openwrt.org/15.05/openwrt.git
-cd openwrt
+git clone https://github.com/lede-project/source.git
+cd lede-project
 rm -rf feeds/packages/net/tinc
-git clone https://github.com/awiouy/openwrt-tinc-1.1 package/packages/tinc
+git clone https://github.com/excogitation/openwrt-tinc-1.1.git
 ./scripts/feeds install tinc
-wget https://downloads.openwrt.org/chaos_calmer/15.05.1/brcm2708/bcm2709/config.diff
-cp config.diff .config
-make defconfig
+make defconfig 
 make package/tinc/compile
 ```
 
@@ -44,6 +45,7 @@ opkg install tinc_1.1-pre11-*_brcm2708.ipk
 ```
 
 ## sptps_speed
+From 1.1-pre11
 
 ### Raspberry Pi B+
 
