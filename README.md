@@ -45,6 +45,27 @@ opkg install tinc_1.1-pre11-*_brcm2708.ipk
 ```
 
 ## sptps_speed
+1.1-pre15
+###GL.iNet 6416 (Atheros AR9331)
+Generating keys for 10 seconds:            228.18 op/s
+Ed25519 sign for 10 seconds:               208.34 op/s
+Ed25519 verify for 10 seconds:              75.60 op/s
+ECDH for 10 seconds:                        59.19 op/s
+SPTPS/TCP authenticate for 10 seconds:      27.75 op/s
+SPTPS/TCP transmit for 10 seconds:          24.78 Mbit/s
+SPTPS/UDP authenticate for 10 seconds:      27.74 op/s
+SPTPS/UDP transmit for 10 seconds:          24.98 Mbit/s
+
+### Archer C7 (QCA9558)
+Generating keys for 10 seconds:            531.17 op/s
+Ed25519 sign for 10 seconds:               497.37 op/s
+Ed25519 verify for 10 seconds:             181.63 op/s
+ECDH for 10 seconds:                       140.99 op/s
+SPTPS/TCP authenticate for 10 seconds:      65.69 op/s
+SPTPS/TCP transmit for 10 seconds:          64.76 Mbit/s
+SPTPS/UDP authenticate for 10 seconds:      65.66 op/s
+SPTPS/UDP transmit for 10 seconds:          65.35 Mbit/s
+
 From 1.1-pre11
 
 ### Raspberry Pi B+
