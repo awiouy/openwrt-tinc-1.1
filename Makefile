@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tinc
-PKG_VERSION:=1.1-pre11
+PKG_VERSION:=1.1-pre15
 PKG_RELEASE=$(PKG_SOURCE_VERSION)
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=http://tinc-vpn.org/git/tinc
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=e44c337eae674120745f7c7c56a1a70919ff40ca
+PKG_SOURCE_VERSION:=af81c436d6e11a53803747af7cc8ecfd449ccd4c
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_MIRROR_MD5SUM:=
 
@@ -26,7 +26,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/tinc
   SECTION:=net
   CATEGORY:=Network
-  DEPENDS:=+kmod-tun +liblzo +libopenssl +librt
+  DEPENDS:=+kmod-tun +liblzo +libopenssl +librt +zlib
   TITLE:=VPN tunneling daemon
   URL:=http://www.tinc-vpn.org/
 # MAINTAINER:=Saverio Proto <zioproto@gmail.com>
@@ -44,15 +44,14 @@ TARGET_CFLAGS += -std=gnu99
 CONFIGURE_ARGS += \
 	--disable-curses \
 	--disable-readline \
-	--with-kernel="$(LINUX_DIR)" \
 	--with-lzo-include="$(STAGING_DIR)/usr/include/lzo" \
 	--with-zlib="$(STAGING_DIR)/usr"
 
 define Package/tinc/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/sptps_speed $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tinc $(1)/usr/sbin/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/tincd $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/sptps_speed $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/init.d/
 	$(INSTALL_BIN) files/$(PKG_NAME).init $(1)/etc/init.d/$(PKG_NAME)
 	$(INSTALL_DIR) $(1)/etc/config
@@ -61,6 +60,13 @@ define Package/tinc/install
 	$(INSTALL_DIR) $(1)/lib/upgrade/keep.d
 	$(INSTALL_DATA) files/tinc.upgrade $(1)/lib/upgrade/keep.d/tinc
 endef
+
+MAKE_PATH:=src
+define Build/Compile
+	$(call Build/Compile/Default)
+	$(call Build/Compile/Default,sptps_speed)
+endef
+
 
 define Package/tinc/conffiles
 /etc/config/tinc
